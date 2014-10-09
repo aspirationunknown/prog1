@@ -2,31 +2,33 @@
 
 bool isEmpty(void)
 {
-    if(count == 0)
+    if(q.headptr == NULL && q.tailptr == NULL)
         return true;
     return false;
 }
 
-bool push(Philosopher* value)
+bool push(Philosopher value)
 {
+    Philosopher* temp = malloc(sizeof(Philosopher));
     //case 1 queue is empty
     if(q.headptr == NULL && q.tailptr == NULL)
     {
         q.headptr = value;
         q.tailptr = value;
-        q.count++;
         return true;
     }
 
     //case 2 queue is not empty
     q.tailptr->next = value;
     q.tailptr = value;
-    q.count++
     return true;
 }
 
 Philosopher* pop(void)
 {
+    if(isEmpty())
+        return NULL;
+
     Philosopher* temp;
 
     temp = q.headptr;
