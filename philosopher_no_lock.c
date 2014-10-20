@@ -13,7 +13,7 @@ void* grab_chopsticks(void* rank);
 
 int main(void)
 {
-    long i;
+    long i, j;
     pthread_t* threads = (pthread_t*)malloc(NUM_PHILOSOPHERS * sizeof(pthread_t));
 ;
 
@@ -23,14 +23,17 @@ int main(void)
         printf("Philosopher %d is thinking.\n", i);
     }
 
-    for(i = 0; i < NUM_PHILOSOPHERS; ++i)
+    for(j = 0; j < 10; ++j)
     {
-        pthread_create(&threads[i], NULL, grab_chopsticks, (void*)i);
-    }
+        for(i = 0; i < NUM_PHILOSOPHERS; ++i)
+        {
+            pthread_create(&threads[i], NULL, grab_chopsticks, (void*)i);
+        }
 
-    for(i = 0; i < NUM_PHILOSOPHERS; ++i)
-    {
-        pthread_join(threads[i], NULL);
+        for(i = 0; i < NUM_PHILOSOPHERS; ++i)
+        {
+             pthread_join(threads[i], NULL);
+        }
     }
 
     free(threads);
