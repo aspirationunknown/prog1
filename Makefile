@@ -37,7 +37,7 @@ trapezoid_timed:	trapezoid_timed.c
 philosopher_no_lock:	philosopher_no_lock.c phil_queue.c phil_queue.h
 	$(CC) -o $@ $^ $(LIBS)
 
-philosopher_lock:	philosopher_lock.c phil_queue.c phil_queue.h
+philosopher_lock:	philosopher_lock.c
 	$(CC) -o $@ $^ -DSTACK $(LIBS)
 
 
