@@ -25,20 +25,10 @@ LIBS = -lpthread
 # MAKE allows the use of "wildcards", to make writing compilation instructions
 # a bit easier. GNU make uses $@ for the target and $^ for the dependencies.
 
-all:	trapezoid trapezoid_timed philosopher_no_lock philosopher_lock
+.c:
+	$(CC) -o $@ $@.c $(CFLAGS) $(LIBS)
 
-# specific targets
-trapezoid:	trapezoid.c
-	$(CC) -o $@ $^ $(LIBS)
 
-trapezoid_timed:	trapezoid_timed.c
-	$(CC) -o $@ $^ $(LIBS)
-
-philosopher_no_lock:	philosopher_no_lock.c phil_queue.c phil_queue.h
-	$(CC) -o $@ $^ $(LIBS)
-
-philosopher_lock:	philosopher_lock.c
-	$(CC) -o $@ $^ -DSTACK $(LIBS)
 
 
 # utility targets
